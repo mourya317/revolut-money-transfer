@@ -29,6 +29,6 @@ public class TransactionController {
     public Response submitMoneyTransfer(TransactionRepresentation transactionRepresentation) {
         TransactionDto txn = transactionService.from(transactionRepresentation);
         List<AccountRepresentation> result = transactionService.transfer(txn);
-        return Response.ok().entity(result).build();
+        return Response.ok().entity(result).cacheControl(CacheControl.valueOf("no-cache")).build();
     }
 }
