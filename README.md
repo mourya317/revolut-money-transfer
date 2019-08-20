@@ -31,6 +31,10 @@ SOLUTION
 4. JUnit5 , RestAssured , mockito - Testing unit tests, integration tests
 5. log4j - logging library
 
+**DESCRIPTION**
+i kept the solution simple and to the point . Added unit tests for testing the functions and integration tests for the apis.
+The transact api locks the bank accounts based on the hash to handle concurrency.
+
 **BUILD and RUN**
 ```
 mvn clean
