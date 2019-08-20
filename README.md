@@ -1,6 +1,6 @@
 # revolut-money-transfer
 
-Problem statement
+**Problem statement**
 
 Design and implement a RESTful API (including data model and the backing implementation) for
 money transfers between accounts.
@@ -23,20 +23,119 @@ Implicit requirements:
 
 SOLUTION
 
-1. Libraries used:
+**LIBRARIES USED**
 
-Jetty - http Server
-Java8
-Jersey - JAX-RS implementation
-JUnit5 , RestAssured , mockito - Testing unit tests, integration tests
-log4j - logging library
+1. Jetty - http Server
+2. Java8
+3. Jersey - JAX-RS implementation
+4. JUnit5 , RestAssured , mockito - Testing unit tests, integration tests
+5. log4j - logging library
 
-2. BUILD and RUN
-
+**BUILD and RUN**
+```
 mvn clean
+
 mvn package
+
 java -jar target\revolut-bank-transfer-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
 
-3. API DOCUMENTATION
+**API DOCUMENTATION**
 
+1. *Get all the accounts*
+
+- Http method : GET
+- Uri         : /accounts
+- Content-type: application/json
+- Sample Response : 200 OK
+```
+[
+    {
+        "acountNumber": "3",
+        "accountBalance": 460
+    },
+    {
+        "acountNumber": "4",
+        "accountBalance": 540
+    }
+]
+```
+2. *Get particular account using id*
+
+- Http method : GET
+- Uri         : /accounts/{id}
+- Content-type: application/json
+- Sample Response : 200 OK , 204 N0 Content
+```
+Request : /accounts/4
+
+{
+    "acountNumber": "4",
+    "accountBalance": 540
+}
+```
+
+3. *Add an account
+
+- Http method : POST
+- Uri         : /accounts
+- Content-type: application/json
+- Sample Body1: 
+```
+{
+"acountNumber":"1",
+"accountBalance":"500"
+}
+```
+- Sample Response1: 200 OK
+```
+{
+"acountNumber":"1",
+"accountBalance":"500"
+}
+```
+
+- Sample response2: 400 BAD REQUEST
+```
+Account with id 1 already exists
+```
+
+4. *Transact money between accounts
+
+- Http method : POST
+- Uri         : /transaction/transact
+- Content-type: application/json
+- Sample Body1: 
+```
+{
+"source":"1",
+"target":"2",
+"amount":"10.00"
+}
+```
+- Sample Response1: 200 OK
+```
+[
+    {
+        "id": "1",
+        "balance": 490
+    },
+    {
+        "id": "2",
+        "balance": 510
+    }
+]
+```
+- Sample response2: 400 BAD REQUEST
+```
+Invalid source/destination Account.
+```
+- Sample response3: 400 BAD REQUEST
+```
+The transferred amount should be greater than zero.
+```
+- Sample response3: 409 CONFLICT
+```
+Transaction failed due to insufficient funds.
+```
 
