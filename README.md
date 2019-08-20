@@ -75,7 +75,7 @@ Request : /accounts/4
 }
 ```
 
-3. *Add an account
+3. *Add an account*
 
 - Http method : POST
 - Uri         : /accounts
@@ -100,7 +100,7 @@ Request : /accounts/4
 Account with id 1 already exists
 ```
 
-4. *Transact money between accounts
+4. *Transact money between accounts*
 
 - Http method : POST
 - Uri         : /transaction/transact
