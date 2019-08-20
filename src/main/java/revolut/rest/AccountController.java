@@ -26,7 +26,7 @@ public class AccountController {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getAccountById(@PathParam("id") String id) {
